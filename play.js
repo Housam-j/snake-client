@@ -1,11 +1,14 @@
 const net = require('net');
-const connect = function() {
-  const conn = net.createConnection({
-    host: '165.227.47.243',
-    PORT: '50541'
-  });
-  conn.setEncoding('utf8');
-  return conn;
-};
+const connect = require('connect');
+
 console.log("Connecting........");
-connect;
+const conn = connect();
+conn.on("connect", () => {
+  console.log('connection is made');
+});
+conn.on("data", (data) => {
+  console.log('called data' , data);
+});
+conn.on("end", (data) => {
+  console.log('the end',data);
+});
